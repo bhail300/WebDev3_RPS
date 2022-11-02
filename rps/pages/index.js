@@ -5,6 +5,7 @@ import { Wrapper } from './styles'
 import { BackgroundImage } from './styles'
 import AppText from './components/text/text'
 import React, { useState } from 'react';
+import Leaderboard from './components/leaderboard/leaderboard'
 
 export default function Home()  {
   var [player, setPlayer] = useState("none");
@@ -47,6 +48,8 @@ export default function Home()  {
       </ButtonCont>
 
       <AppText></AppText>
+
+      <Leaderboard></Leaderboard>
        
        <div>Win Streak: {streak}</div>
        <div>The Player Chose: {player}</div>
