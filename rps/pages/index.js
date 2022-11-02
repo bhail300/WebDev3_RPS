@@ -4,6 +4,7 @@ import Form from './components/forms/forms'
 import { Wrapper } from './styles'
 import { BackgroundImage } from './styles'
 import AppText from './components/text/text'
+import HandImage from './components/handImage/handImage'
 import React, { useState } from 'react';
 
 export default function Home()  {
@@ -47,6 +48,7 @@ export default function Home()  {
       </ButtonCont>
 
       <AppText></AppText>
+      <HandImage />
        
        <div>Win Streak: {streak}</div>
        <div>The Player Chose: {player}</div>
