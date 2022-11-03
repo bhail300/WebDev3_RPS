@@ -8,6 +8,8 @@ import React, { useState } from 'react';
 import { IconCont } from './styles'
 import BackIcon from './components/icons/backIcon'
 import LeaderBoardIcon from './components/icons/leaderboardIcon'
+import Leaderboard from './components/leaderboard/leaderboard'
+
 
 export default function Home()  {
   var [player, setPlayer] = useState("none");
@@ -54,6 +56,8 @@ export default function Home()  {
       </ButtonCont>
 
       <AppText></AppText>
+
+      <Leaderboard></Leaderboard>
        
        <div>Win Streak: {streak}</div>
        <div>The Player Chose: {player}</div>
