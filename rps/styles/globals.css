@@ -28,6 +28,11 @@ font-family: 'Baloo 2', cursive;
 font-weight:regular;
 }
 
+.Icon {
+  height: 10vmin; 
+  width: 10vmin;
+}
+
 * {
   box-sizing: border-box;
 }

@@ -5,8 +5,12 @@ import { Wrapper } from './styles'
 import { BackgroundImage } from './styles'
 import AppText from './components/text/text'
 import React, { useState } from 'react';
+import { IconCont } from './styles'
+import BackIcon from './components/icons/backIcon'
+import LeaderBoardIcon from './components/icons/leaderboardIcon'
 import Leaderboard from './components/leaderboard/leaderboard'
 import axios from "axios"
+
 
 
 export async function getServerSideProps() {
@@ -19,6 +23,7 @@ export async function getServerSideProps() {
 }
 
 export default function Home({data})  {
+
   var [player, setPlayer] = useState("none");
   var [cpu, setCpu] = useState("none");
   var [streak, setStreak] = useState(0);
@@ -58,7 +63,14 @@ console.log(data)
   
   return (
     <div>
+
       <button onClick={()=>GetServerData()}>Log Backend</button>
+
+      <IconCont>
+      <BackIcon className="Icon"/>
+      <LeaderBoardIcon className="Icon"/>
+      </IconCont>
+
       <Form></Form>
       <ButtonCont>
       <SelectionButton>Rock</SelectionButton>
