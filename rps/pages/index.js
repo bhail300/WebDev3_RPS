@@ -6,8 +6,19 @@ import { BackgroundImage } from './styles'
 import AppText from './components/text/text'
 import React, { useState } from 'react';
 import Leaderboard from './components/leaderboard/leaderboard'
+import axios from "axios"
 
-export default function Home()  {
+
+export async function getServerSideProps() {
+  // Fetch data from external API
+  const res = await fetch(`http://localhost:3001/load-scores`)
+  const data = await res.json()
+
+  // Pass data to the page via props
+  return { props: { data } }
+}
+
+export default function Home({data})  {
   var [player, setPlayer] = useState("none");
   var [cpu, setCpu] = useState("none");
   var [streak, setStreak] = useState(0);
@@ -16,6 +27,11 @@ export default function Home()  {
     var choices = ["rock", 'paper', 'scissors']
     var numchoice = Math.floor(Math.random() * 3)
     return(choices[numchoice])
+  }
+
+  const GetServerData = async ()=>{
+    const result = await axios.get("data.json")
+    console.log(result)
   }
 
   const handleChoice = (choice) =>{
@@ -36,10 +52,13 @@ export default function Home()  {
     } else if(player === "scissors" && cpu === "rock"){
       setStreak(0)
     }
-  }
+}
+
+console.log(data)
   
   return (
     <div>
+      <button onClick={()=>GetServerData()}>Log Backend</button>
       <Form></Form>
       <ButtonCont>
       <SelectionButton>Rock</SelectionButton>
