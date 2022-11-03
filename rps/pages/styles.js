@@ -35,3 +35,38 @@ border-radius: 10px;
 margin: 5%;
 color: #363630;
 `
+
+export const GameContentCont = styled.div`
+width: 90%;
+display:flex;
+flex-direction: column;
+justify-content:center;
+align-items:center;
+`
+
+export const Wrapper2 = styled.div`
+width: 40%;
+display:flex;
+justify-content:center;
+`
+
+export const Wrapper3 = styled.div`
+width: 80%;
+display:flex;
+flex-direction:row;
+`
+
+export const Wrapper4 = styled.div`
+width: 80%;
+display:flex;
+flex-direction:row;
+justify-content:center;
+`
+
+export const Wrapper5 = styled.div`
+width: 100%;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+`

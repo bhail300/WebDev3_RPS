@@ -4,7 +4,7 @@ import { Wrapper } from '../../styles';
 
 const TextCont = styled.div`
 font-size: ${({size}) => 
-        size === 'title' && '150px' ||
+        size === 'title' && '100px' ||
         size === 'body' && '20px' || 
         size === 'leaderboard' && '40px' || 
         size === 'speech' && '48px' || 
