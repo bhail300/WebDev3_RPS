@@ -5,6 +5,9 @@ import { Wrapper } from './styles'
 import { BackgroundImage } from './styles'
 import AppText from './components/text/text'
 import React, { useState } from 'react';
+import { IconCont } from './styles'
+import BackIcon from './components/icons/backIcon'
+import LeaderBoardIcon from './components/icons/leaderboardIcon'
 
 export default function Home()  {
   var [player, setPlayer] = useState("none");
@@ -39,6 +42,10 @@ export default function Home()  {
   
   return (
     <div>
+      <IconCont>
+      <BackIcon className="Icon"/>
+      <LeaderBoardIcon className="Icon"/>
+      </IconCont>
       <Form></Form>
       <ButtonCont>
       <SelectionButton>Rock</SelectionButton>
