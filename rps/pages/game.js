@@ -78,11 +78,14 @@ export default function Game(){
             <GameContentCont>
                 <Wrapper2>
                     <AppText text={gameResult} style='speech'></AppText>
+                   
                 </Wrapper2>
+                <AppText text={`Wins: ${playerPoints}`} style='speech'/>
                 <Wrapper3>
                     <Wrapper5>
                         <Image src={playerChoice} width={150} height={100}></Image>
                         <AppText text='You' style='speech'/>
+                        
                     </Wrapper5>
                     <Wrapper5>
                         <Image src={opponent} width={150} height={100}></Image>
