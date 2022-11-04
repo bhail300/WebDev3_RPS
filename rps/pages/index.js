@@ -13,14 +13,14 @@ import axios from "axios"
 
 
 
-export async function getServerSideProps() {
-  // Fetch data from external API
-  const res = await fetch(`http://localhost:3001/load-scores`)
-  const data = await res.json()
+// export async function getServerSideProps() {
+//   // Fetch data from external API
+//   const res = await fetch(`http://localhost:3001/load-scores`)
+//   const data = await res.json()
 
-  // Pass data to the page via props
-  return { props: { data } }
-}
+//   // Pass data to the page via props
+//   return { props: { data } }
+// }
 
 export default function Home({data})  {
 
