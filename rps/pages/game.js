@@ -41,9 +41,14 @@ export default function Game(){
           }
 
         const handleClick = (value) => {
-
             setPlayerChoice(value);
             createCompChoice();
+        }
+        const newGame = () =>{
+          setCompPoints(0)
+          setPlayerPoints(0)
+          setPlayerChoice(player)
+          setCompChoice(opponent);
         }
 
           const PlayGame = () =>{
@@ -53,18 +58,21 @@ export default function Game(){
              }else if((compChoice === oppscissors && playerChoice === rock) || (compChoice === opprock && playerChoice === paper) || (compChoice === opppaper && playerChoice === scissors)){
                setGameResult( 'You win this round.');
                setPlayerPoints(playerPoints + 1)
-             }else{
+             }else if((compChoice === oppscissors && playerChoice === scissors) || (compChoice === opprock && playerChoice === rock) || (compChoice === opppaper && playerChoice === paper) ){
                setGameResult( 'This round is a draw.');
+             }else{
+              setGameResult('');
              }
        
              if(playerPoints === 5){
                setGameResult('Player wins the game!')
-               New_Game();
+               newGame();
              }
              
              if(compPoints === 5){
                setGameResult('Computer wins the game.')
-               New_Game();
+               newGame();
+       
              }
             }
 
@@ -80,16 +88,18 @@ export default function Game(){
                     <AppText text={gameResult} style='speech'></AppText>
                    
                 </Wrapper2>
-                <AppText text={`Wins: ${playerPoints}`} style='speech'/>
+                
                 <Wrapper3>
                     <Wrapper5>
                         <Image src={playerChoice} width={150} height={100}></Image>
                         <AppText text='You' style='speech'/>
+                        <AppText text={`Wins: ${playerPoints}`} style='speech'/>
                         
                     </Wrapper5>
                     <Wrapper5>
                         <Image src={opponent} width={150} height={100}></Image>
                         <AppText text='Opponent' style='speech'/>
+                        <AppText text={`Wins: ${compPoints}`} style='speech'/>
                     </Wrapper5>
                 </Wrapper3>
                 <Wrapper4>
