@@ -10,10 +10,14 @@ import { GameContentCont, Wrapper2, Wrapper3, Wrapper4, Wrapper5} from './styles
 import styled from 'styled-components'
 import Image from 'next/image'
 import rock from '../public/rockHand.png'
+import opprock from '../public/rightRock.png'
 import paper from '../public/paperHand.png'
+import opppaper from '../public/rightPaper.png'
 import scissors from '../public/scissorsHand.png'
+import oppscissors from '../public/rightScissor.png'
 import opponent from '../public/opponent.gif'
-import question from '../public/questionmark.png'
+import player from '../public/player.gif'
+
 
 const Wrapper0 = styled(Wrapper)`
 display:flex;
@@ -22,21 +26,47 @@ justify-content:center;
 align-items:center;
 `
 const choices = [rock, paper, scissors]
-
+const oppchoices = [opprock, opppaper, oppscissors] 
 export default function Game(){
 
-        const [playerChoice, setPlayerChoice] = useState(question);
+        const [playerChoice, setPlayerChoice] = useState(player);
         const [compChoice, setCompChoice] = useState(opponent);
+        const [playerPoints, setPlayerPoints] = useState(0);
+        const [compPoints, setCompPoints] = useState(0);
+        const [gameResult, setGameResult] = useState('');
 
         const createCompChoice = () =>{
-            const randomChoice = choices[Math.floor(Math.random() * choices.length)];
+            const randomChoice = oppchoices[Math.floor(Math.random() * oppchoices.length)];
             setCompChoice(randomChoice);
           }
-        
-          const handleClick = (value) => {
-            setPlayerChoice(value)
-            createCompChoice()
-          }
+
+        const handleClick = (value) => {
+
+            setPlayerChoice(value);
+            createCompChoice();
+        }
+
+          const PlayGame = () =>{
+            if ((compChoice === opppaper && playerChoice === rock) || (compChoice === oppscissors && playerChoice === paper) || (compChoice === opprock && playerChoice === scissors)){
+               setGameResult( 'You lose this round.');
+               setCompPoints(compPoints + 1)
+             }else if((compChoice === oppscissors && playerChoice === rock) || (compChoice === opprock && playerChoice === paper) || (compChoice === opppaper && playerChoice === scissors)){
+               setGameResult( 'You win this round.');
+               setPlayerPoints(playerPoints + 1)
+             }else{
+               setGameResult( 'This round is a draw.');
+             }
+       
+             if(playerPoints === 5){
+               setGameResult('Player wins the game!')
+               New_Game();
+             }
+             
+             if(compPoints === 5){
+               setGameResult('Computer wins the game.')
+               New_Game();
+             }
+            }
 
     return (
         <div>
@@ -47,23 +77,24 @@ export default function Game(){
             <Wrapper0>
             <GameContentCont>
                 <Wrapper2>
-                    <AppText text='header' style='title'></AppText>
+                    <AppText text={gameResult} style='speech'></AppText>
                 </Wrapper2>
                 <Wrapper3>
                     <Wrapper5>
-                        <Image src={playerChoice} width={150}></Image>
+                        <Image src={playerChoice} width={150} height={100}></Image>
                         <AppText text='You' style='speech'/>
                     </Wrapper5>
                     <Wrapper5>
-                        <Image src={opponent} width={150}></Image>
+                        <Image src={opponent} width={150} height={100}></Image>
                         <AppText text='Opponent' style='speech'/>
                     </Wrapper5>
                 </Wrapper3>
                 <Wrapper4>
                     <SelectionButton onClick={() => handleClick(rock)}>Rock</SelectionButton>
                     <SelectionButton onClick={() => handleClick(paper)}>Paper</SelectionButton>
-                    <SelectionButton onClick={() => handleClick(scissors)}>Scissors</SelectionButton>
+                    <SelectionButton onClick={() => handleClick(scissors)}>Scissors</SelectionButton>          
                 </Wrapper4>
+                <SelectionButton onClick={PlayGame} > Play </SelectionButton>
             </GameContentCont>
         </Wrapper0>
         </div>

@@ -65,6 +65,7 @@ justify-content:center;
 
 export const Wrapper5 = styled.div`
 width: 100%;
+height: 250px;
 display:flex;
 flex-direction:column;
 justify-content:space-evenly;
