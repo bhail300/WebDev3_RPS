@@ -13,17 +13,44 @@ width: 50%;
 transform: scaleX(-1);
 `
 
- function HandImage() {
+function HandImage(props) {
 
-    const paper = ('paperHand.png');
-    const rock = ('rockHand.png');
-    const scissors = ('scissorsHand.png');
+    const playerSelection = props.playerSel;
+    const cpuSelction = props.cpuSel;
+    console.log(props);
+
+    const paperImg = ('paperHand.png');
+    const rockImg = ('rockHand.png');
+    const scissorsImg = ('scissorsHand.png');
+
+    var playerChoice = '';
+    var cpuChoice = '';
+
+    
+        if(playerSelection === "rock"){
+            playerChoice = rockImg;
+          } else if(playerSelection === "paper"){
+            playerChoice = paperImg;
+          } else if(playerSelection === "scissors"){
+            playerChoice = scissorsImg;
+          } 
+
+          if(cpuSelction === "rock"){
+            cpuChoice = rockImg;
+          } else if(cpuSelction === "paper"){
+            cpuChoice = paperImg;
+          } else if(cpuSelction === "scissors"){
+            cpuChoice = scissorsImg;
+          } 
+
+          console.log(playerChoice);
+          console.log(cpuChoice);
 
     return (
         <HandContainer>
 
-            <P1HandImg src={paper} alt="hand gesture" />
-            <P2HandImg src={scissors} alt="hand gesture" />
+            <P1HandImg src={playerChoice} alt="player hand gesture" />
+            <P2HandImg src={cpuChoice} alt="cpu hand gesture" />
 
         </HandContainer>
     );

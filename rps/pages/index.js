@@ -41,13 +41,7 @@ export default function Home()  {
   return (
     <div>
       <Form></Form>
-      <ButtonCont>
-      <SelectionButton>Rock</SelectionButton>
-      <SelectionButton>Paper</SelectionButton>
-      <SelectionButton>Scissors</SelectionButton>
-      </ButtonCont>
-
-     
+  
       <HandImage playerSel={player} cpuSel={cpu} />
        
        <div>Win Streak: {streak}</div>
