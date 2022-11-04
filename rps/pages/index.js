@@ -47,8 +47,8 @@ export default function Home()  {
       <SelectionButton>Scissors</SelectionButton>
       </ButtonCont>
 
-      <AppText></AppText>
-      <HandImage />
+     
+      <HandImage playerSel={player} cpuSel={cpu} />
        
        <div>Win Streak: {streak}</div>
        <div>The Player Chose: {player}</div>

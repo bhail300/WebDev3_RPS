@@ -21,14 +21,13 @@ transform: scaleX(-1);
 
     return (
         <HandContainer>
-            
+
             <P1HandImg src={paper} alt="hand gesture" />
             <P2HandImg src={scissors} alt="hand gesture" />
 
         </HandContainer>
     );
-    
-}
 
+}
 
 export default HandImage;
