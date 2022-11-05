@@ -17,6 +17,7 @@ import scissors from '../public/scissorsHand.png'
 import oppscissors from '../public/rightScissor.png'
 import opponent from '../public/opponent.gif'
 import player from '../public/player.gif'
+import SpeechBubble from '../pages/components/speech-bubble/speech-bubble'
 
 
 const Wrapper0 = styled(Wrapper)`
@@ -34,7 +35,12 @@ export default function Game(){
         const [playerPoints, setPlayerPoints] = useState(0);
         const [compPoints, setCompPoints] = useState(0);
         const [gameResult, setGameResult] = useState('');
+        const [bubbletext, setBubbleText] = useState('Choose Rock, Paper or Scissors and then click Play');
 
+        const changeBubbleText = (value) => {
+            setBubbleText(value);
+        }
+        
         const createCompChoice = () =>{
             const randomChoice = oppchoices[Math.floor(Math.random() * oppchoices.length)];
             setCompChoice(randomChoice);
@@ -42,19 +48,22 @@ export default function Game(){
 
         const handleClick = (value) => {
 
-            setPlayerChoice(value);
+            setPlayerChoice(value)
             createCompChoice();
         }
 
           const PlayGame = () =>{
-            if ((compChoice === opppaper && playerChoice === rock) || (compChoice === oppscissors && playerChoice === paper) || (compChoice === opprock && playerChoice === scissors)){
-               setGameResult( 'You lose this round.');
-               setCompPoints(compPoints + 1)
-             }else if((compChoice === oppscissors && playerChoice === rock) || (compChoice === opprock && playerChoice === paper) || (compChoice === opppaper && playerChoice === scissors)){
-               setGameResult( 'You win this round.');
-               setPlayerPoints(playerPoints + 1)
+            if ((compChoice == opppaper && playerChoice == rock) || (compChoice == oppscissors && playerChoice == paper) || (compChoice == opprock && playerChoice == scissors)){
+               setGameResult( 'You lose this round.')
+               changeBubbleText(gameResult)
+               setCompPoints(compPoints + 1);
+             }else if((compChoice == oppscissors && playerChoice == rock) || (compChoice == opprock && playerChoice == paper) || (compChoice == opppaper && playerChoice == scissors)){
+               setGameResult( 'You win this round.')
+               changeBubbleText(gameResult)
+               setPlayerPoints(playerPoints + 1);
              }else{
-               setGameResult( 'This round is a draw.');
+               setGameResult('This round is a draw.')
+               changeBubbleText(gameResult);
              }
        
              if(playerPoints === 5){
@@ -76,10 +85,7 @@ export default function Game(){
             </IconCont>
             <Wrapper0>
             <GameContentCont>
-                <Wrapper2>
-                    <AppText text={gameResult} style='speech'></AppText>
-                   
-                </Wrapper2>
+                  <SpeechBubble text={bubbletext}/>      
                 <AppText text={`Wins: ${playerPoints}`} style='speech'/>
                 <Wrapper3>
                     <Wrapper5>
