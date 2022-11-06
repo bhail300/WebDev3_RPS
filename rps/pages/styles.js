@@ -32,7 +32,7 @@ background-color:#FFFDF4;
 border:2px solid #363630;
 box-shadow: 4px 4px #363630;
 border-radius: 10px;
-margin: 5%;
+margin: 0 5% 5% 5%;
 color: #363630;
 `
 
