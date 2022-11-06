@@ -71,3 +71,14 @@ flex-direction:column;
 justify-content:space-evenly;
 align-items:center;
 `
+
+export const LeaderCont = styled.div`
+display:flex;
+flex-direction: column;
+justify-content:center;
+align-items:center;
+`
+
+export const LeaderBodyTextCont = styled.div`
+align-items:left;
+`
