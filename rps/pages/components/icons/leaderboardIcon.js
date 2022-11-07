@@ -1,8 +1,9 @@
 import React from "react";
 
-const LeaderBoardIcon = ({ className }) =>{
+const LeaderBoardIcon = ({ className, onNav=() => {}}) =>{
+   
     return(
-        <svg viewBox="0 0 24 24" fill="#FF6D6D" xmlns="http://www.w3.org/2000/svg" strokeWidth="1" stroke="black" className={className}>
+        <svg viewBox="0 0 24 24" fill="#FF6D6D" xmlns="http://www.w3.org/2000/svg" strokeWidth="1" stroke="black" className={className} onClick={onNav}>
         <path d="M15 21H9V12.6C9 12.2686 9.26863 12 9.6 12H14.4C14.7314 12 15 12.2686 15 12.6V21Z" stroke="black" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
         <path d="M20.4 21H15V18.1C15 17.7686 15.2686 17.5 15.6 17.5H20.4C20.7314 17.5 21 17.7686 21 18.1V20.4C21 20.7314 20.7314 21 20.4 21Z" stroke="black" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
         <path d="M9 21V16.1C9 15.7686 8.73137 15.5 8.4 15.5H3.6C3.26863 15.5 3 15.7686 3 16.1V20.4C3 20.7314 3.26863 21 3.6 21H9Z" stroke="black" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>

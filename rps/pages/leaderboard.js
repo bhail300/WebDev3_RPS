@@ -1,27 +1,51 @@
-import React from 'react';
-import { IconCont, LeaderCont, Wrapper5, LeaderBodyTextCont } from './styles';
-import BackIcon from './components/icons/backIcon';
-import AppText from './components/text/text';
 
-export default function LeaderBoard (){
+import styled from 'styled-components';
+import { Wrapper } from './styles';
+import AppText from './components/text/text';
+import { useRouter } from 'next/router'
+import { IconCont } from './styles';
+import BackIcon from './components/icons/backIcon';
+
+const PageWrapper = styled.div`
+display:flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+`
+
+
+const LeadWrapper = styled.div`
+display:flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 1rem;
+border-radius: 15%;
+background-color: #FFFDF4;
+flex-direction: column;
+`
+
+export default function Leaderboard({
+    rank="1",
+    name="dummy",
+    score=0,
+}){
+    const router = useRouter()
     return (
-        <div>
-            <IconCont>
-                <BackIcon className="Icon"/>
-            </IconCont>
-            <Wrapper5>
-            <LeaderCont>
-                <AppText text='Leaderboard' style='title'/>
-                <LeaderBodyTextCont>
-                    <AppText text='1. seanLam - 12248' style='body'/> 
-                    <AppText text='2. chris - 300' style='body'/> 
-                    <AppText text='3. cool_guy_DK - 289' style='body'/> 
-                    <AppText text='4. light yagami - 288' style='body'/> 
-                    <AppText text='5. that.dawg - 230' style='body'/>
-                    <AppText text='6. jason - 10' style='body'/>   
-                </LeaderBodyTextCont>
-            </LeaderCont>
-            </Wrapper5>           
-        </div>
+        <>
+        <IconCont>
+            <BackIcon className="Icon" onNav={() => router.push('/game')}/>
+        </IconCont>
+        <PageWrapper>
+ 
+            <AppText text='Leaderboard'></AppText>
+            <LeadWrapper>
+                <AppText text={`${rank}. ${name} — ${score}`} style="leaderboard"></AppText>
+                <AppText text={`${rank}. ${name} — ${score}`} style="leaderboard"></AppText>
+            </LeadWrapper>
+        </PageWrapper>
+        </>
     )
 }
+
