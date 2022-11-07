@@ -5,7 +5,6 @@ import AppText from './components/text/text'
 import React, { useState } from 'react';
 import BackIcon from './components/icons/backIcon'
 import LeaderBoardIcon from './components/icons/leaderboardIcon'
-import Leaderboard from './components/leaderboard/leaderboard'
 import { GameContentCont, Wrapper2, Wrapper3, Wrapper4, Wrapper5} from './styles'
 import styled from 'styled-components'
 import Image from 'next/image'
@@ -18,6 +17,7 @@ import oppscissors from '../public/rightScissor.png'
 import opponent from '../public/opponent.gif'
 import player from '../public/player.gif'
 import SpeechBubble from '../pages/components/speech-bubble/speech-bubble'
+import { useRouter } from 'next/router'
 
 
 const Wrapper0 = styled(Wrapper)`
@@ -89,11 +89,12 @@ export default function Game(){
               setGameResult('Computer wins the game.')
               newGame();
             }
+    const router = useRouter()
     return (
         <div>
             <IconCont>
-                <BackIcon className="Icon"/>
-                <LeaderBoardIcon className="Icon"/>
+                <BackIcon className="Icon" onNav={() => router.push('/')}/>
+                <LeaderBoardIcon className="Icon" onNav={() => router.push('/leaderboard')}/>
             </IconCont>
             <Wrapper0>
             <GameContentCont>
