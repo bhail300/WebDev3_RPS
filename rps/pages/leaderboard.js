@@ -1,3 +1,4 @@
+
 import styled from 'styled-components';
 import { Wrapper } from './styles';
 import AppText from './components/text/text';
@@ -47,3 +48,4 @@ export default function Leaderboard({
         </>
     )
 }
+
