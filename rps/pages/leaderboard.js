@@ -20,8 +20,8 @@ display:flex;
 flex-direction: row;
 justify-content: center;
 align-items: center;
-padding: 1rem;
-border-radius: 15%;
+padding: 5%;
+border-radius: 7%;
 background-color: #FFFDF4;
 flex-direction: column;
 `
@@ -35,14 +35,15 @@ export default function Leaderboard({
     return (
         <>
         <IconCont>
-            <BackIcon className="Icon" onNav={() => router.push('/game')}/>
+            <BackIcon className="Icon" onNav={() => router.push('/')}/>
         </IconCont>
         <PageWrapper>
  
             <AppText text='Leaderboard'></AppText>
             <LeadWrapper>
-                <AppText text={`${rank}. ${name} — ${score}`} style="leaderboard"></AppText>
-                <AppText text={`${rank}. ${name} — ${score}`} style="leaderboard"></AppText>
+                <AppText text={`${1}. ${"Seth"} — ${30}`} style="leaderboard"></AppText>
+                <AppText text={`${2}. ${"Desmand"} — ${14}`} style="leaderboard"></AppText>
+                <AppText text={`${3}. ${"Jason"} — ${6}`} style="leaderboard"></AppText>
             </LeadWrapper>
         </PageWrapper>
         </>

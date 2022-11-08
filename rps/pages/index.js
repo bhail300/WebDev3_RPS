@@ -36,7 +36,7 @@ export default function Home({data})  {
       </IconCont>
       
       <UserWrapper>
-        <AppText text='ROCK PAPER SCISSORS'></AppText>
+        <AppText text='RPS'></AppText>
         <Form></Form>
       </UserWrapper>
       

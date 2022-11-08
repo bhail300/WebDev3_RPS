@@ -28,7 +28,7 @@ margin: 5%;
 export default function Form(){
     return (
         <Wrapper>
-            <FormCont action="/send-data-here" method="post">
+            <FormCont action="/game" method="post">
                 <input type="text" id="user" name="user" className='input' placeholder="Enter Username"/>
                 <input type="text" id="pass" name="pass" className='input' placeholder="Enter Password" />
                 <SubmitButton type="submit">Submit</SubmitButton>
