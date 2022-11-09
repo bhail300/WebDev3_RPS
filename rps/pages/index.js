@@ -28,8 +28,6 @@ export default function Home({data})  {
   const router = useRouter()
   return (
     <div>
-
-    
       <IconCont>
      
       <LeaderBoardIcon className="Icon" onNav={() => router.push('/leaderboard')}/>
