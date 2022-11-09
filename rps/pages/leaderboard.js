@@ -5,6 +5,7 @@ import AppText from './components/text/text';
 import { useRouter } from 'next/router'
 import { IconCont } from './styles';
 import BackIcon from './components/icons/backIcon';
+import { useState, useEffect } from "react"
 
 const PageWrapper = styled.div`
 display:flex;
@@ -13,7 +14,6 @@ justify-content: center;
 align-items: center;
 flex-direction: column;
 `
-
 
 const LeadWrapper = styled.div`
 display:flex;
@@ -26,12 +26,27 @@ background-color: #FFFDF4;
 flex-direction: column;
 `
 
+
+
+
 export default function Leaderboard({
     rank="1",
     name="dummy",
-    score=0,
+ 
 }){
     const router = useRouter()
+    const [scores, setScores ]= useState()
+
+    useEffect(()=>{
+        // get current notes from backend
+        fetch('http://localhost:3001/load-scores')
+        .then(async(res)=> {    
+        const data = await res.json()
+        console.log(data)
+        //setScores(data)
+        
+        })
+    })
     return (
         <>
         <IconCont>
@@ -41,6 +56,9 @@ export default function Leaderboard({
  
             <AppText text='Leaderboard'></AppText>
             <LeadWrapper>
+
+            
+                
                 <AppText text={`${1}. ${"Seth"} — ${30}`} style="leaderboard"></AppText>
                 <AppText text={`${2}. ${"Desmand"} — ${14}`} style="leaderboard"></AppText>
                 <AppText text={`${3}. ${"Jason"} — ${6}`} style="leaderboard"></AppText>
