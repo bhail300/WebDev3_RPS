@@ -6,51 +6,52 @@ import { BackgroundImage } from './styles'
 import AppText from './components/text/text'
 import HandImage from './components/handImage/handImage'
 import React, { useState } from 'react';
+import { IconCont } from './styles'
+import BackIcon from './components/icons/backIcon'
+import LeaderBoardIcon from './components/icons/leaderboardIcon'
+import Leaderboard from './leaderboard'
+import axios from "axios"
+import { UserWrapper } from './styles'
+import { useRouter } from 'next/router'
 
-export default function Home()  {
-  var [player, setPlayer] = useState("none");
-  var [cpu, setCpu] = useState("none");
-  var [streak, setStreak] = useState(0);
-  
-  const cpuChoice = () =>{
-    var choices = ["rock", 'paper', 'scissors']
-    var numchoice = Math.floor(Math.random() * 3)
-    return(choices[numchoice])
-  }
 
-  const handleChoice = (choice) =>{
-    setPlayer(choice)
-    setCpu(cpuChoice())
-    var score = 0
 
-    if(player === "rock" && cpu === "scissors"){
-      setStreak(streak += 1)
-    } else if(player === "scissors" && cpu === "paper"){
-      setStreak(streak += 1)
-    } else if(player === "paper" && cpu === "rock"){
-      setStreak(streak += 1)
-    } else if(player === "rock" && cpu === "paper"){
-      setStreak(0)
-    } else if(player === "paper" && cpu === "scissors"){
-      setStreak(0)
-    } else if(player === "scissors" && cpu === "rock"){
-      setStreak(0)
-    }
-  }
-  
+// export async func  tion getServerSideProps() {
+//   // Fetch data from external API
+//   const res = await fetch(`http://localhost:3001/load-scores`)
+//   const data = await res.json()
+
+//   // Pass data to the page via props
+//   return { props: { data } }
+// }
+
+export default function Home({data})  {
+  const router = useRouter()
   return (
     <div>
+<<<<<<< HEAD
       <Form></Form>
   
       <HandImage playerSel={player} cpuSel={cpu} />
-       
-       <div>Win Streak: {streak}</div>
-       <div>The Player Chose: {player}</div>
-       <div>The Cpu Chose: {cpu}</div>
-       <button onClick={()=>handleChoice("rock")}>Rock</button>
-       <button onClick={()=>handleChoice("paper")}>Paper</button>
-       <button onClick={()=>handleChoice("scissors")}>Scissors</button>
+=======
+      <IconCont>
+     
+      <LeaderBoardIcon className="Icon" onNav={() => router.push('/leaderboard')}/>
+      </IconCont>
+      
+      <UserWrapper>
+        <AppText text='RPS'></AppText>
+        <Form></Form>
+      </UserWrapper>
+      
+  
 
+      
+
+    
+>>>>>>> main
+       
+     
     </div>
   )
 }
