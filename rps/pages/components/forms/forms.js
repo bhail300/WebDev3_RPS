@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { Wrapper } from '../../styles';
 
 
+//Styles
 const FormCont = styled.form`
 display:flex;
 flex-direction: column;
@@ -10,7 +11,6 @@ align-items:center;
 align-content:center;
 width: 25%;
 `
-
 const SubmitButton = styled.button`
 width: 30%;
 padding: 1%;

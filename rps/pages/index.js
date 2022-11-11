@@ -29,11 +29,6 @@ export default function Home({data})  {
   const router = useRouter()
   return (
     <div>
-<<<<<<< HEAD
-      <Form></Form>
-  
-      <HandImage playerSel={player} cpuSel={cpu} />
-=======
       <IconCont>
      
       <LeaderBoardIcon className="Icon" onNav={() => router.push('/leaderboard')}/>
@@ -43,15 +38,6 @@ export default function Home({data})  {
         <AppText text='RPS'></AppText>
         <Form></Form>
       </UserWrapper>
-      
-  
-
-      
-
-    
->>>>>>> main
-       
-     
     </div>
   )
 }
