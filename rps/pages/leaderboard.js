@@ -26,9 +26,6 @@ background-color: #FFFDF4;
 flex-direction: column;
 `
 
-
-
-
 export default function Leaderboard({
     rank="1",
     name="dummy",
@@ -55,10 +52,7 @@ export default function Leaderboard({
         <PageWrapper>
  
             <AppText text='Leaderboard'></AppText>
-            <LeadWrapper>
-
-            
-                
+            <LeadWrapper>                
                 <AppText text={`${1}. ${"Seth"} — ${30}`} style="leaderboard"></AppText>
                 <AppText text={`${2}. ${"Desmand"} — ${14}`} style="leaderboard"></AppText>
                 <AppText text={`${3}. ${"Jason"} — ${6}`} style="leaderboard"></AppText>
