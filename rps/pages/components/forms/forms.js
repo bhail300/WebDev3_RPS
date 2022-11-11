@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { Wrapper } from '../../styles';
-import { useEffect } from "react";
-
+import { useState, useEffect } from "react"
 
 
 //Styles
@@ -28,8 +27,11 @@ margin: 5%;
 `
 
 export default function Form() {
-    const HandleChange = () => {
-        fetch('http://localhost:3001/add-user')
+    const [newUser, setNewUser] = useState('');
+
+    const HandleChange = (e) => {
+        setNewUser(e.target.value);
+        fetch(`http://localhost:3001/add-user?name=${newUser}`)
             .then(async (res) => {
                 const data = await res.json()
                 console.log(data)
@@ -56,12 +58,12 @@ export default function Form() {
                 <SubmitButton type="submit">Submit</SubmitButton>
             </FormCont>
             <Wrapper>
-                <FormCont>
+                <FormCont method="post">
                     <h3>New Player?</h3>
                     <input
                         type="text"
                         id="user"
-                        name="user"
+                        name="test"
                         className='input'
                         placeholder="Enter New Username" />
                     <SubmitButton onClick={() => {
