@@ -3,6 +3,7 @@ import { Wrapper } from '../../styles';
 import { useState, useEffect } from "react"
 
 
+
 //Styles
 const FormCont = styled.form`
 display:flex;
@@ -26,7 +27,10 @@ color: #363630;
 margin: 5%;
 `
 
-export default function Form() {
+export default function Form(
+
+    
+) {
     const [newUser, setNewUser] = useState('');
     const updateNewUser = (e)=>{
         setNewUser(e.target.value)
@@ -40,12 +44,12 @@ export default function Form() {
                 console.log(data)
 
             })
-        console.log("Button clicked")
+    
     }
 
     return (
         <Wrapper>
-            <FormCont action="/game" method="post">
+            {/* <FormCont action="/game" method="post">
                 <input
                     type="text"
                     id="user"
@@ -59,7 +63,7 @@ export default function Form() {
                     className='input'
                     placeholder="Enter Password" />
                 <SubmitButton type="submit">Submit</SubmitButton>
-            </FormCont>
+            </FormCont> */}
             <Wrapper>
                 <FormCont method="post">
                     <h3>New Player?</h3>
