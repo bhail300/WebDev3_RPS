@@ -28,9 +28,12 @@ margin: 5%;
 
 export default function Form() {
     const [newUser, setNewUser] = useState('');
-
-    const HandleChange = (e) => {
-        setNewUser(e.target.value);
+    const updateNewUser = (e)=>{
+        setNewUser(e.target.value)
+      }
+    
+    const HandleChange = () => {
+        
         fetch(`http://localhost:3001/add-user?name=${newUser}`)
             .then(async (res) => {
                 const data = await res.json()
@@ -62,11 +65,14 @@ export default function Form() {
                     <h3>New Player?</h3>
                     <input
                         type="text"
+                        value={newUser}
+                        onChange={updateNewUser}
                         id="user"
                         name="test"
                         className='input'
                         placeholder="Enter New Username" />
                     <SubmitButton onClick={() => {
+                        
                         HandleChange()
                     }}
                         type="submit">Submit</SubmitButton>
