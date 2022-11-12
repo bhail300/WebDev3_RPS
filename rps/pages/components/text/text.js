@@ -30,6 +30,7 @@ col === 'blue' && '#7B89A3' ||
 "#363630"
 };
 
+text-align: left;
 `
 
 

@@ -24,26 +24,28 @@ padding: 5%;
 border-radius: 7%;
 background-color: #FFFDF4;
 flex-direction: column;
-`
 
-export default function Leaderboard({
-    rank="1",
-    name="dummy",
- 
-}){
+
+
+export default function Leaderboard({})
+{
     const router = useRouter()
-    const [scores, setScores ]= useState()
-
+    const [scores, setScores] = useState([])
+    
     useEffect(()=>{
         // get current notes from backend
         fetch('http://localhost:3001/load-scores')
-        .then(async(res)=> {    
-        const data = await res.json()
-        console.log(data)
-        //setScores(data)
-        
-        })
-    })
+        .then(async(res)=> {
+          const data = await res.json()
+          setScores(data)
+        });
+        return () => {
+          };
+          }, []);
+    
+
+    console.log(scores)
+
     return (
         <>
         <IconCont>
@@ -52,10 +54,13 @@ export default function Leaderboard({
         <PageWrapper>
  
             <AppText text='Leaderboard'></AppText>
-            <LeadWrapper>                
-                <AppText text={`${1}. ${"Seth"} — ${30}`} style="leaderboard"></AppText>
-                <AppText text={`${2}. ${"Desmand"} — ${14}`} style="leaderboard"></AppText>
-                <AppText text={`${3}. ${"Jason"} — ${6}`} style="leaderboard"></AppText>
+
+            <LeadWrapper>
+
+            {scores?.map((s,i)=> 
+            
+            <AppText text={`${scores[i].id}. ${scores[i].name} — ${scores[i].wins}`} style="leaderboard"></AppText>
+            )}
             </LeadWrapper>
         </PageWrapper>
         </>
