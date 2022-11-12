@@ -2,7 +2,7 @@ import styles from '../styles/Home.module.css'
 import Form from './components/forms/forms'
 import { ButtonCont, SelectionButton, Wrapper,BackgroundImage, IconCont } from './styles'
 import AppText from './components/text/text'
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useEffect } from 'react';
 import BackIcon from './components/icons/backIcon'
 import LeaderBoardIcon from './components/icons/leaderboardIcon'
 import { GameContentCont, Wrapper2, Wrapper3, Wrapper4, Wrapper5} from './styles'
@@ -26,16 +26,46 @@ flex-direction:column;
 justify-content:center;
 align-items:center;
 `
+
+const TimerCont = styled.div`
+`
+
 const choices = [rock, paper, scissors]
 const oppchoices = [opprock, opppaper, oppscissors] 
 export default function Game(){
+
+        const choices = [rock, paper, scissors]
+        const oppchoices = [opprock, opppaper, oppscissors] 
 
         const [playerChoice, setPlayerChoice] = useState(player);
         const [compChoice, setCompChoice] = useState(opponent);
         const [playerPoints, setPlayerPoints] = useState(0);
         const [compPoints, setCompPoints] = useState(0);
-        const [gameResult, setGameResult] = useState('');
+        const [gameResult, setGameResult] = useState('Choose Rock, Paper or Scissors and then click Play');
         const [bubbletext, setBubbleText] = useState('Choose Rock, Paper or Scissors and then click Play');
+        const [timer, setTimer] = useState(3);
+        const [runTimer, setRunTimer] = useState(false);
+
+        const [timer, setTimer] = useState(3);
+        const [runTimer, setRunTimer] = useState(false);
+
+        useEffect(() =>{
+          if(runTimer && timer > 0){
+            setTimeout(() => {
+              setTimer(timer - 1)
+            }, 1000)
+          } else if (runTimer && timer < 1){
+            setRunTimer(false)
+            setTimer(3);
+            //once timer hits 0 play function is called
+            PlayGame();
+          }
+        }, [runTimer, timer])
+
+        const start = () =>{
+          setRunTimer(true);
+          createCompChoice();
+        };
 
         const [timer, setTimer] = useState(3);
         const [runTimer, setRunTimer] = useState(false);
@@ -59,18 +89,29 @@ export default function Game(){
         };
 
         const changeBubbleText = (value) => {
-            setBubbleText(value);
+          setBubbleText(value);
         }
-        
-        const createCompChoice = () =>{
-            const randomChoice = oppchoices[Math.floor(Math.random() * oppchoices.length)];
-            setCompChoice(randomChoice);
-          }
+      
+        const generateCompChoice = () =>{
+          const randomNumber = oppchoices[Math.floor(Math.random() * oppchoices.length)];
+          setCompChoice(randomNumber);
+        }
 
         const handleClick = (value) => {
             setPlayerChoice(value)
-            
         }
+
+        useEffect(() =>{
+          if(runTimer && timer > 0){
+            setTimeout(() => {
+              setTimer(timer - 1)
+            }, 1000)
+          } else if (runTimer && timer < 1){
+            setRunTimer(false)
+            setTimer(3);
+            play();
+          }
+        }, [runTimer, timer])
 
         const newGame = () =>{
           setCompPoints(0)
@@ -79,37 +120,67 @@ export default function Game(){
           setCompChoice(opponent);
         
           setTimeout(() => {
-            setBubbleText('Choose Rock, Paper or Scissors and then click Play')
+            setGameResult('Choose Rock, Paper or Scissors and then click Play')
           }, 1000);
+          
+        }
+
+        const start = () => {
+          setGameResult('')
+          setRunTimer(true);
+          generateCompChoice();
+        }
+
+        const play = () =>{
+          if (compChoice == opppaper && playerChoice == rock){
+            setGameResult( 'You lose this round.')
+            changeBubbleText(gameResult)
+            setCompPoints(compPoints + 1);
+          }else if (compChoice == oppscissors && playerChoice == paper){
+            setGameResult( 'You lose this round.')
+            changeBubbleText(gameResult)
+            setCompPoints(compPoints + 1 );
+          }else if (compChoice == opprock && playerChoice == scissors){
+            setGameResult( 'You lose this round.')
+            changeBubbleText(gameResult)
+            setCompPoints(compPoints + 1 );
+          }else if (compChoice == oppscissors && playerChoice == rock){
+            setGameResult( 'You win this round.')
+            changeBubbleText(gameResult)
+            setPlayerPoints(playerPoints + 1 );
+          }else if (compChoice == opprock && playerChoice == paper){
+            setGameResult( 'You win this round.')
+            changeBubbleText(gameResult)
+            setPlayerPoints(playerPoints + 1 );
+          }else if (compChoice == opppaper && playerChoice == scissors){
+            setGameResult( 'You win this round.')
+            changeBubbleText(gameResult)
+            setPlayerPoints(playerPoints + 1 );
+          }else if (compChoice == opppaper && playerChoice == paper){
+            setGameResult( 'This round is a draw.')
+            changeBubbleText(gameResult)
+          }else if (compChoice == opprock && playerChoice == rock){
+            setGameResult( 'This round is a draw.')
+            changeBubbleText(gameResult)
+          }else if (compChoice == oppscissors && playerChoice == scissors){
+            setGameResult( 'This round is a draw.')
+            changeBubbleText(gameResult)
+          }
+        }
+
+        if(playerPoints === 5){
+          setTimeout(() => {
+            setGameResult('Player wins the game!')
+            newGame();
+          }, 1000)
         }
         
-          const PlayGame = () =>{
-            createCompChoice();
-            if ((compChoice == opppaper && playerChoice == rock) || (compChoice == oppscissors && playerChoice == paper) || (compChoice == opprock && playerChoice == scissors)){
-               setGameResult( 'You lose this round.')
-               changeBubbleText(gameResult)
-               setCompPoints(compPoints + 1);
-             }else if((compChoice == oppscissors && playerChoice == rock) || (compChoice == opprock && playerChoice == paper) || (compChoice == opppaper && playerChoice == scissors)){
-               setGameResult( 'You win this round.')
-               changeBubbleText(gameResult)
-               setPlayerPoints(playerPoints + 1);
-             }else{
-               setGameResult('This round is a draw.')
-               changeBubbleText(gameResult);
-             }
-       
-
-            }
-
-            if(playerPoints === 5){
-              setGameResult('Player wins the game!')
-              newGame();
-            }
-            
-            if(compPoints === 5){
-              setGameResult('Computer wins the game.')
-              newGame();
-            }
+        if(compPoints === 5){
+          setTimeout(() => {
+            setGameResult('Computer wins the game!')
+            newGame();
+          }, 1000)
+        }
     const router = useRouter()
     return (
         <div>
@@ -119,23 +190,17 @@ export default function Game(){
             </IconCont>
             <Wrapper0>
             <GameContentCont>
-                  <SpeechBubble text={bubbletext}/>      
-               
+                  { runTimer == true && <SpeechBubble text='loading...'/>}
+                  { runTimer == false && <SpeechBubble text={gameResult}/>}
                 <Wrapper3>
                     <Wrapper5>
-                        <Image src={playerChoice} width={150} height={100}></Image>
+                      <Image src={playerChoice} width={150} height={100}/>
                         <AppText text='You' style='speech'/>
-                        <AppText text={`Wins: ${playerPoints}`} style='speech'/>
-                        
+                        <AppText text={`Wins: ${playerPoints}`} style='speech'/>      
                     </Wrapper5>
-                      <Wrapper5>
-                    <div className={styles.midCol}>
-                        {/*timer is only visible when running*/}
-                        { runTimer && <p className='timer'>{timer}</p>}                     
-                        </div>
-                    </Wrapper5>  
                     <Wrapper5>
-                        <Image src={opponent} width={150} height={100}></Image>
+                        { runTimer ==true && <Image src={opponent} width={150} height={100}/>}
+                        { runTimer == false && <Image src={compChoice} width={150} height={100}/>}
                         <AppText text='Opponent' style='speech'/>
                         <AppText text={`Wins: ${compPoints}`} style='speech'/>
                     </Wrapper5>
@@ -145,7 +210,7 @@ export default function Game(){
                     <SelectionButton onClick={() => handleClick(paper)}>Paper</SelectionButton>
                     <SelectionButton onClick={() => handleClick(scissors)}>Scissors</SelectionButton>          
                 </Wrapper4>
-                <SelectionButton onClick={PlayGame} > Play </SelectionButton>
+                <SelectionButton onClick={start} > Play </SelectionButton>
             </GameContentCont>
         </Wrapper0>
         </div>
