@@ -1,11 +1,9 @@
-import styles from '../styles/Home.module.css'
-import Form from './components/forms/forms'
-import { ButtonCont, SelectionButton, Wrapper,BackgroundImage, IconCont } from './styles'
+import { SelectionButton, Wrapper, IconCont } from './styles'
 import AppText from './components/text/text'
-import React, { useState, useEffect, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import BackIcon from './components/icons/backIcon'
 import LeaderBoardIcon from './components/icons/leaderboardIcon'
-import { GameContentCont, Wrapper2, Wrapper3, Wrapper4, Wrapper5} from './styles'
+import { GameContentCont, Wrapper3, Wrapper4, Wrapper5} from './styles'
 import styled from 'styled-components'
 import Image from 'next/image'
 import rock from '../public/rockHand.png'
@@ -27,11 +25,6 @@ justify-content:center;
 align-items:center;
 `
 
-const TimerCont = styled.div`
-`
-
-const choices = [rock, paper, scissors]
-const oppchoices = [opprock, opppaper, oppscissors] 
 export default function Game(){
 
         const choices = [rock, paper, scissors]
@@ -45,48 +38,6 @@ export default function Game(){
         const [bubbletext, setBubbleText] = useState('Choose Rock, Paper or Scissors and then click Play');
         const [timer, setTimer] = useState(3);
         const [runTimer, setRunTimer] = useState(false);
-
-        const [timer, setTimer] = useState(3);
-        const [runTimer, setRunTimer] = useState(false);
-
-        useEffect(() =>{
-          if(runTimer && timer > 0){
-            setTimeout(() => {
-              setTimer(timer - 1)
-            }, 1000)
-          } else if (runTimer && timer < 1){
-            setRunTimer(false)
-            setTimer(3);
-            //once timer hits 0 play function is called
-            PlayGame();
-          }
-        }, [runTimer, timer])
-
-        const start = () =>{
-          setRunTimer(true);
-          createCompChoice();
-        };
-
-        const [timer, setTimer] = useState(3);
-        const [runTimer, setRunTimer] = useState(false);
-
-        useEffect(() =>{
-          if(runTimer && timer > 0){
-            setTimeout(() => {
-              setTimer(timer - 1)
-            }, 1000)
-          } else if (runTimer && timer < 1){
-            setRunTimer(false)
-            setTimer(3);
-            //once timer hits 0 play function is called
-            PlayGame();
-          }
-        }, [runTimer, timer])
-
-        const start = () =>{
-          setRunTimer(true);
-          createCompChoice();
-        };
 
         const changeBubbleText = (value) => {
           setBubbleText(value);
@@ -172,15 +123,16 @@ export default function Game(){
           setTimeout(() => {
             setGameResult('Player wins the game!')
             newGame();
-          }, 1000)
+          }, 1500)
         }
         
         if(compPoints === 5){
           setTimeout(() => {
             setGameResult('Computer wins the game!')
             newGame();
-          }, 1000)
+          }, 1500)
         }
+
     const router = useRouter()
     return (
         <div>
