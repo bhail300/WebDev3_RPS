@@ -4,6 +4,7 @@ import Form from './components/forms/forms'
 import { Wrapper } from './styles'
 import { BackgroundImage } from './styles'
 import AppText from './components/text/text'
+import HandImage from './components/handImage/handImage'
 import React, { useState } from 'react';
 import { IconCont } from './styles'
 import BackIcon from './components/icons/backIcon'
@@ -28,8 +29,6 @@ export default function Home({data})  {
   const router = useRouter()
   return (
     <div>
-
-    
       <IconCont>
      
       <LeaderBoardIcon className="Icon" onNav={() => router.push('/leaderboard')}/>
@@ -39,14 +38,6 @@ export default function Home({data})  {
         <AppText text='RPS'></AppText>
         <Form></Form>
       </UserWrapper>
-      
-  
-
-      
-
-    
-       
-     
     </div>
   )
 }
