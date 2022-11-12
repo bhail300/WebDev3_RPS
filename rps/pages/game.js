@@ -2,7 +2,7 @@ import styles from '../styles/Home.module.css'
 import Form from './components/forms/forms'
 import { ButtonCont, SelectionButton, Wrapper,BackgroundImage, IconCont } from './styles'
 import AppText from './components/text/text'
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import BackIcon from './components/icons/backIcon'
 import LeaderBoardIcon from './components/icons/leaderboardIcon'
 import { GameContentCont, Wrapper2, Wrapper3, Wrapper4, Wrapper5} from './styles'
@@ -36,6 +36,27 @@ export default function Game(){
         const [compPoints, setCompPoints] = useState(0);
         const [gameResult, setGameResult] = useState('');
         const [bubbletext, setBubbleText] = useState('Choose Rock, Paper or Scissors and then click Play');
+
+        const [timer, setTimer] = useState(3);
+        const [runTimer, setRunTimer] = useState(false);
+
+        useEffect(() =>{
+          if(runTimer && timer > 0){
+            setTimeout(() => {
+              setTimer(timer - 1)
+            }, 1000)
+          } else if (runTimer && timer < 1){
+            setRunTimer(false)
+            setTimer(3);
+            //once timer hits 0 play function is called
+            PlayGame();
+          }
+        }, [runTimer, timer])
+
+        const start = () =>{
+          setRunTimer(true);
+          createCompChoice();
+        };
 
         const changeBubbleText = (value) => {
             setBubbleText(value);
@@ -107,6 +128,12 @@ export default function Game(){
                         <AppText text={`Wins: ${playerPoints}`} style='speech'/>
                         
                     </Wrapper5>
+                      <Wrapper5>
+                    <div className={styles.midCol}>
+                        {/*timer is only visible when running*/}
+                        { runTimer && <p className='timer'>{timer}</p>}                     
+                        </div>
+                    </Wrapper5>  
                     <Wrapper5>
                         <Image src={opponent} width={150} height={100}></Image>
                         <AppText text='Opponent' style='speech'/>
