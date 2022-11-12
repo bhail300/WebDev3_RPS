@@ -24,8 +24,6 @@ padding: 5%;
 border-radius: 7%;
 background-color: #FFFDF4;
 flex-direction: column;
-`
-
 
 
 
@@ -56,8 +54,8 @@ export default function Leaderboard({})
         <PageWrapper>
  
             <AppText text='Leaderboard'></AppText>
-            <LeadWrapper>
 
+            <LeadWrapper>
 
             {scores?.map((s,i)=> 
             

@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 import { Wrapper } from '../../styles';
+import { useState, useEffect } from "react"
 
 
+//Styles
 const FormCont = styled.form`
 display:flex;
 flex-direction: column;
@@ -10,7 +12,6 @@ align-items:center;
 align-content:center;
 width: 25%;
 `
-
 const SubmitButton = styled.button`
 width: 30%;
 padding: 1%;
@@ -25,14 +26,59 @@ color: #363630;
 margin: 5%;
 `
 
-export default function Form(){
+export default function Form() {
+    const [newUser, setNewUser] = useState('');
+    const updateNewUser = (e)=>{
+        setNewUser(e.target.value)
+      }
+    
+    const HandleChange = () => {
+        
+        fetch(`http://localhost:3001/add-user?name=${newUser}`)
+            .then(async (res) => {
+                const data = await res.json()
+                console.log(data)
+
+            })
+        console.log("Button clicked")
+    }
+
     return (
         <Wrapper>
             <FormCont action="/game" method="post">
-                <input type="text" id="user" name="user" className='input' placeholder="Enter Username"/>
-                <input type="text" id="pass" name="pass" className='input' placeholder="Enter Password" />
+                <input
+                    type="text"
+                    id="user"
+                    name="user"
+                    className='input'
+                    placeholder="Enter Username" />
+                <input
+                    type="text"
+                    id="pass"
+                    name="pass"
+                    className='input'
+                    placeholder="Enter Password" />
                 <SubmitButton type="submit">Submit</SubmitButton>
             </FormCont>
+            <Wrapper>
+                <FormCont method="post">
+                    <h3>New Player?</h3>
+                    <input
+                        type="text"
+                        value={newUser}
+                        onChange={updateNewUser}
+                        id="user"
+                        name="test"
+                        className='input'
+                        placeholder="Enter New Username" />
+                    <SubmitButton onClick={() => {
+                        
+                        HandleChange()
+                    }}
+                        type="submit">Submit</SubmitButton>
+                </FormCont>
+            </Wrapper>
         </Wrapper>
+
     )
 }
