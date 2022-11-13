@@ -119,11 +119,13 @@ export default function Game(){
           }
         }
 
-        if(playerPoints === 5){
+        if(playerPoints === 1){
           setTimeout(() => {
             setGameResult('Player wins the game!')
             newGame();
           }, 1500)
+          fetch(`http://localhost:3001/add-point?id=${localStorage.getItem('currentUser')}`)
+            
         }
         
         if(compPoints === 5){
@@ -142,7 +144,7 @@ export default function Game(){
             </IconCont>
             <Wrapper0>
             <GameContentCont>
-                  { runTimer == true && <SpeechBubble text='loading...'/>}
+                  { runTimer == true && <SpeechBubble text='Rock! Paper! Scissors!'/>}
                   { runTimer == false && <SpeechBubble text={gameResult}/>}
                 <Wrapper3>
                     <Wrapper5>
