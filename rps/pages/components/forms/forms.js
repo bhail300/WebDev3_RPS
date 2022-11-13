@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { Wrapper } from '../../styles';
 import { useState, useEffect } from "react"
+import { useRouter } from 'next/router'
 
 
 
@@ -12,6 +13,7 @@ justify-content:center;
 align-items:center;
 align-content:center;
 width: 25%;
+margin: 1%;
 `
 const SubmitButton = styled.button`
 width: 30%;
@@ -28,55 +30,80 @@ margin: 5%;
 `
 
 export default function Form(
+{
+}){
+    const router = useRouter()
+
+    useEffect(()=>{
+        localStorage.clear();
+   
+          });
+
+    // if (typeof window !== 'undefined') {
+    //         localStorage.setItem('currenrtUser', '');
+    //     }
 
     
-) {
+          
     const [newUser, setNewUser] = useState('');
+    const [password, setPassword] = useState('');
+    const [validPath, setValidPath] = useState("");
     const updateNewUser = (e)=>{
         setNewUser(e.target.value)
+        
       }
     
-    const HandleChange = () => {
-        
-        fetch(`http://localhost:3001/add-user?name=${newUser}`)
+    const updatePass = (e)=>{
+        setPassword(e.target.value)
+      }
+      
+      const HandleChange = () => {
+        fetch(`http://localhost:3001/add-user?name=${newUser}&pass=${password}`)
             .then(async (res) => {
                 const data = await res.json()
-                console.log(data)
+                if (typeof data !== 'undefined' && data.length > 0) {
+                    localStorage.setItem('currentUser', data[0].id);
+                    setValidPath("/game")
+        
+                   
+                    
+                }else{
+                    localStorage.setItem('currentUser',"");
+                    setValidPath("/")
+                    alert("Invalid Login")
+                    
+                }
+                
+            })}
 
-            })
-    
-    }
+    const handlePage = (e)=>{
+        e.preventDefault()
+        router.push(validPath)
+      }
+
 
     return (
         <Wrapper>
-            {/* <FormCont action="/game" method="post">
-                <input
-                    type="text"
-                    id="user"
-                    name="user"
-                    className='input'
-                    placeholder="Enter Username" />
-                <input
-                    type="text"
-                    id="pass"
-                    name="pass"
-                    className='input'
-                    placeholder="Enter Password" />
-                <SubmitButton type="submit">Submit</SubmitButton>
-            </FormCont> */}
             <Wrapper>
-                <FormCont method="post">
-                    <h3>New Player?</h3>
+                <FormCont onSubmit={handlePage} method="post">
+                    <h3>Sign In/Register</h3>
                     <input
                         type="text"
                         value={newUser}
                         onChange={updateNewUser}
                         id="user"
-                        name="test"
+                        name="user"
                         className='input'
-                        placeholder="Enter New Username" />
+                        placeholder="Username" />
+                    <input
+                        type="password"
+                        value={password}
+                        onChange={updatePass}
+                        id="pass"
+                        name="pass"
+                        className='input'
+                        placeholder="Password" />
                     <SubmitButton onClick={() => {
-                        
                         HandleChange()
                     }}
                         type="submit">Submit</SubmitButton>

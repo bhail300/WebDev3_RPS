@@ -59,7 +59,7 @@ export default function Leaderboard({})
 
             {scores?.map((s,i)=> 
             
-            <AppText text={`${scores[i].id}. ${scores[i].name} — ${scores[i].wins}`} style="leaderboard"></AppText>
+            <AppText text={`${i+1}. ${scores[i].name} — ${scores[i].wins}`} style="leaderboard"></AppText>
             )}
             </LeadWrapper>
         </PageWrapper>

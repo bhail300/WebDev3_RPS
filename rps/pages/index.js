@@ -29,14 +29,11 @@ export default function Home({data})  {
   const router = useRouter()
   return (
     <div>
-      <IconCont>
-     
-      <LeaderBoardIcon className="Icon" onNav={() => router.push('/leaderboard')}/>
-      </IconCont>
+  
       
       <UserWrapper>
         <AppText text='RPS'></AppText>
-        <Form></Form>
+        <Form ></Form>
       </UserWrapper>
     </div>
   )
