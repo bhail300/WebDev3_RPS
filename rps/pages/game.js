@@ -119,7 +119,7 @@ export default function Game(){
           }
         }
 
-        if(playerPoints === 1){
+        if(playerPoints === 3){
           setTimeout(() => {
             setGameResult('Player wins the game!')
             newGame();
@@ -128,7 +128,7 @@ export default function Game(){
             
         }
         
-        if(compPoints === 5){
+        if(compPoints === 3){
           setTimeout(() => {
             setGameResult('Computer wins the game!')
             newGame();
